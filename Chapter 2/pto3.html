@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pto Calculator</title>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <style>
+        #displayEmpty {
+            color: red;
+        }
+        .psudoCode {
+
+        }
+        .ptoCalc {
+            display: none;
+        }
+        .makeRed {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="psudoCode">
+        <ol>
+            <li>Start</li>
+            <li>Take input for years employee has worked</li>
+            <li>Take total amount of weeks worked</li>
+            <li>take total hours of pto used by employee</li>
+            <li>If employee has worked less than 5 years they will get 5 hours per paycheck</li>
+            <li>If employee has worked less than 10 years they will get 6 hours per paycheck</li>
+            <li>If employee has worked more than 10 years they will get 7 hours per paycheck</li>
+            <li>Calculate how much pto they get total a week</li>
+            <li>Take how much they get total a week and multiply it by how many weeks they have worked</li>
+            <li>Take how much they have earned total and subtract it from the amount used</li>
+            <li>Display the value based on the unit they asked for.</li>
+        </ol>
+        <button class="tryItOut">Try It Out</button>
+    </div>
+    <div class="ptoCalc">
+        <form action="#" id="mainForm" onsubmit="ptoPerCheck()">
+            <span id="displayEmpty"></span>
+            <p>How many years have you worked?</p>
+            <input type="text" id="yearsWorked" placeholder="Years Worked">
+            <p>How many weeks have you worked?</p>
+            <input type="text" id="weeksWorked" placeholder="Weeks Worked">
+            <p>How many hours have you used so far?</p>
+            <input type="text" id="hoursUsed" plcaeholder="Hours Used">
+            <p>Would you like to know Days, Hours or Weeks left?</p>
+            <!-- <select name="" id="selectReturn">
+                <option value="hour">Hour</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+            </select> -->
+            <input type="radio" name="select" value="hour">Hour
+            <input type="radio" name="select" value="day">Day
+            <input type="radio" name="select" value="week">Week
+            <button type="submit">Submit</button>
+            <button type="reset">Clear</button>
+        </form>
+        <span id="display">&nbsp;</span>
+        <br>
+        <button class="home">Back to home</button>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            $(".tryItOut").click(function(){
+                $(".ptoCalc").css("display", "block");
+                $(".psudoCode").css("display", "none");
+            });
+            $(".home").click(function(){
+                $(".ptoCalc").css("display", "none");
+                $(".psudoCode").css("display", "block");
+            });
+            
+        })
+        // function clearForm() {
+        //     event.preventDefault();
+
+        //     document.getElementById("mainForm").reset();
+        // }
+        function ptoPerCheck() {
+            event.preventDefault();
+
+            var yearsWorked = document.getElementById("yearsWorked").value;
+            var weeksWorked = document.getElementById("weeksWorked").value;
+            var totalHours = 40;
+            var payChecksPerYear = 26;
+            var display = document.getElementById("display");
+            // var selectReturn = document.getElementById("selectReturn").value;
+            var selectReturn = document.querySelector('input[name = "select"]:checked').value;
+            var hoursUsed = document.getElementById("hoursUsed").value; 
+            var displayEmpty = document.getElementById("displayEmpty")
+
+
+
+            if (yearsWorked === "" || weeksWorked === "" || hoursUsed === "") {
+                displayEmpty.innerHTML = "All flields must be filled in";
+            } else {
+
+                if (yearsWorked < 5) {
+                    var ptoCalc = 5;
+                } else if (yearsWorked < 10) {
+                    var ptoCalc = 6;
+                } else {
+                    var ptoCalc = 7;
+                };
+    
+                var ptoPerWeek = (payChecksPerYear * ptoCalc) / 52;
+    
+                console.log(ptoPerWeek);
+    
+                var grossPtoInWeeks = (ptoPerWeek * weeksWorked);
+    
+                var netPtoToDate = grossPtoInWeeks - hoursUsed;
+                
+                if (selectReturn == "hour") {
+                    display.innerHTML = "You have <span class='makeRed'>" + netPtoToDate + "</span> hours left of pto"
+                } else if (selectReturn == "day") {
+                    display.innerHTML = "You have <span class='makeRed'>" + netPtoToDate / 8 + "</span> days left of pto"
+                } else {
+                    display.innerHTML = "You have <span class='makeRed'>" + netPtoToDate / 40 + "</span> weeks left of pto"
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>Total days off in the year</p>
+    <input type="text" id="years" placeholder="Years Worked">
+    <button type="submit" onclick="totalHours()"></button>
+    <br>
+    <span id="ptoTotal"></span>
+    <script>
+        // var output = document.getElementById("output");
+        // var ptoInYear = 26 * 5;
+        // document.write("<span>" + ptoInyear + "</span>" );
+
+        function totalHours(yearsWorked) {
+            var yearsWorked = document.getElementById('years').value;
+            var addTo = document.getElementById("ptoTotal");
+            var ptoYear = 0;
+            if (yearsWorked < 5) {
+               ptoYear = 5
+            } else if (yearsWorked >= 5) {
+               ptoYear = 6
+            } else if (yearsWorked > 10) {
+               ptoYear = 7
+            };
+            console.log(yearsWorked);
+            addTo.innerHTML = ("This is how much pto you will have in a year " + (26 * ptoYear) / 40);
+
+        };
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Investment Calc</title>
+</head>
+<body>
+    <h1>Investment Calc</h1>
+    <ol>
+        <li>Take input for initial invesmnet amount in dollars</li>
+        <li>Take input for interest rate between 2-7%</li>
+        <li>Take input for additional investment for each term of the investment</li>
+        <li>Take input for an investment term</li>
+        <li>Dropdown/Radio for if they want it in years or months</li>
+        <li>create function named investmentCalc()</li>
+        <li>call function with onsubmit="investmentCalc() inside the form"</li>
+        <li>function investmentCalc() {
+            set investmentAmount
+            set interestRate
+            set investmentTerm
+            set additionalInvestment
+            investmentRate = inteserestRate / 100 //to get percent converted to decimal
+
+            
+            if additionalInvestment != ""
+                totalInvestment = investmentAmount + additionalInvestment
+                
+                investmentInterest = totalInvestment * investmentRate
+
+                investmentFinal = totalInvestment + investmentInterest
+
+                additionalClosing = "With " + additionalInvestment + "additional investment"
+
+
+
+
+            else
+                investmentInterest = investmentRate * investmentAmount //Calculates the interest gained from this term
+
+                investmentFinal = investmentInterest + investmentAmount //Adds interest to innicial investment
+
+                additionalClosing = "With no additional investment" //For closing statement
+
+            if investmentTerm == month 
+                if investmentTerm > 12
+                    alert("There are only 12 months in a year consider using year selection")
+                else
+                    output.innerHTML = ("You will earn " + investmentFinal / investmentTerm + "A month with a total of " + investmentInterest + " total investment. bringing your account total to " + investmentFinal)
+
+        }
+        </li>
+    </ol>
+
+    <div class="investmentCalc">
+        <form action="#" onsubmit="investmentCalc()">
+            <p>How much is your initial investment</p>
+            <input id="initialInvestment" type="text" placeholder="Initial Investment">
+            <p>What is the length of the investment?</p>
+            <input id="investmentTerm" type="text" placeholder="Investment Term">
+            <p>Is the term length in Months or Years?</p>
+            <input type="radio" name="select" value="months" checked="checked"><label for="select">Months</label>
+            <input type="radio" name="select" value="years"><label for="select">Years</label>
+            <p>What is your interest rate? Must be between 2 - 7%</p>
+            <input id="interestRate" type="text" placeholder="Interest Rate">
+            <p>How much in additional investments have you made (if any)?</p>
+            <input id="additionalInvestment" type="text" placeholder="Additional Investments">
+            <button type="submit">Submit</button>
+        </form>
+        <span id="display"></span>
+    </div>
+    <script>
+        function investmentCalc() {
+            event.preventDefault();
+            var initialInvestment = parseFloat(document.getElementById("initialInvestment").value);
+            var investmentTerm = document.getElementById("investmentTerm").value;
+            var selectReturn = document.querySelector('input[name = "select"]:checked').value;
+            var interestRate = document.getElementById("interestRate").value;
+            var display = document.getElementById("display");
+
+            console.log(initialInvestment);
+
+            if (document.getElementById("additionalInvestment").value != "") {
+                var additionalInvest = parseFloat(document.getElementById("additionalInvestment").value);
+                var investment = initialInvestment + additionalInvest;
+                var additionalInvest = "$" + parseFloat(additionalInvest).toFixed(2);
+            } else {
+                var additionalInvest = "no"
+                investment = initialInvestment
+            }
+
+            if (interestRate > 7 || interestRate < 2) {
+                alert("Must be between 2 and 7");
+            } else {
+                decimalInterest = interestRate / 100;
+                var interest = decimalInterest * investment;
+
+                investmentFinal = interest + investment;
+        
+
+                if (selectReturn == "months") {
+                    display.innerHTML = "Your balance for this term is $" + parseFloat(investmentFinal).toFixed(2) + "<br>You have gained $" + interest.toFixed(2) + " over " + investmentTerm + " months <br> You gained $" + parseFloat(interest / investmentTerm).toFixed(2) + " per month with a " + interestRate + "% interest rate <br> With " + additionalInvest + " additional Investment";
+                } else {
+                    display.innerHTML = "Your balance for this term is $" + parseFloat(investmentFinal).toFixed(2) + "<br>You have gained $" + interest.toFixed(2) + " over " + investmentTerm + " years <br> You gained $" + parseFloat(interest / investmentTerm).toFixed(2) + " per year with a " + interestRate + "% interest rate <br> With" + additionalInvest + " additinoa Investment";
+                }
+
+                console.log(investmentFinal);
+                
+            }
+        }
+    </script>
+</body>
+
+
+</html>

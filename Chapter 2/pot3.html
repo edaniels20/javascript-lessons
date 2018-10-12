@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pto Calculator</title>
+</head>
+<body>
+    <ol>
+        <li>Start</li>
+        <li>Take input for years employee has worked</li>1
+        <li>Take total amount of weeks worked</li>
+        <li>take total hours of pto used by employee</li>
+        <li>If employee has worked less than 5 years they will get 5 hours per paycheck</li>
+        <li>If employee has worked less than 10 years they will get 6 hours per paycheck</li>
+        <li>If employee has worked more than 10 years they will get 7 hours per paycheck</li>
+        <li>Calculate how much pto they get total a week</li>
+        <li>Take how much they get total a week and multiply it by how many weeks they have worked</li>
+        <li>Take how much they have earned total and subtract it from the amount used</li>
+        <li>Display the value based on the unit they asked for.</li>
+    </ol>
+    <form action="#" onsubmit="ptoPerCheck()">
+        <p>How many years have you worked?</p>
+        <input type="text" id="yearsWorked" placeholder="Years Worked">
+        <p>How many weeks have you worked?</p>
+        <input type="text" id="weeksWorked" placeholder="Weeks Worked">
+        <p>How many hours have you used so far?</p>
+        <input type="text" id="hoursUsed" plcaeholder="Hours Used">
+        <p>Would you like to know Days, Hours or Weeks left?</p>
+        <select name="" id="selectReturn">
+            <option value="hour">Hour</option>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <span id="display"></span>
+
+
+    <script>
+        function ptoPerCheck() {
+            event.preventDefault();
+
+            var yearsWorked = document.getElementById("yearsWorked").value;
+            var weeksWorked = document.getElementById("weeksWorked").value;
+            var totalHours = 40;
+            var payChecksPerYear = 26;
+            var display = document.getElementById("display");
+            var selectReturn = document.getElementById("selectReturn").value;
+            var hoursUsed = document.getElementById("hoursUsed").value;
+
+            if (yearsWorked < 5) {
+                var ptoCalc = 5;
+            } else if (yearsWorked < 10) {
+                var ptoCalc = 6;
+            } else {
+                var ptoCalc = 7;
+            };
+
+            var ptoPerWeek = (payChecksPerYear * ptoCalc) / 52;
+
+            console.log(ptoPerWeek);
+
+            var grossPtoInWeeks = (ptoPerWeek * weeksWorked);
+
+            var netPtoToDate = grossPtoInWeeks - hoursUsed;
+
+            console.log(netPtoToDate);
+            
+            if (selectReturn == "hour") {
+                display.innerHTML = "You have " + netPtoToDate + " hours left of pto"
+            } else if (selectReturn == "day") {
+                display.innerHTML = "You have " + netPtoToDate / 8 + " days left of pto"
+            } else {
+                display.innerHTML = "You have " + netPtoToDate / 40 + " weeks left of pto"
+            }
+
+            // if (selectReturn == "day") {
+            //     display.innerHTML = ("You get " + ptoPerDay + " hours of PTO per day. ");
+            // } else if (selectReturn == "week") {
+            //     display.innerHTML = ("You get " + ptoPerWeek + " hours of PTO per week. ");
+            // } else {
+            //     display.innerHTML = ("You get " + ptoPerHour + " hours of PTO per hour. ");
+            // }
+            // var ptoLeftMonths = hoursUsed - 
+
+
+        }
+    </script>
+</body>
+</html>

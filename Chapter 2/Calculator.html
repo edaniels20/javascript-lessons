@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="number1">
+    <button id="multiply" onclick="multi()">*</button>
+    <button id="add" onclick="addition()">+</button>
+    <button id="subtract" onclick="subtract()">-</button>
+    <button id="divide" onclick="divide()">/</button>
+    <input type="text" id="number2">
+    <span id="insert"></span>
+
+    <script>
+        function multi() {
+            var num1 = document.getElementById('number1').value;
+            var num2 = document.getElementById('number2').value;
+            var insert = document.getElementById('insert');
+            insert.innerHTML = (num1 * num2);
+        };
+        function addition() {
+            var num1 = parseFloat(document.getElementById('number1').value);
+            var num2 = parseFloat(document.getElementById('number2').value);
+            var insert = document.getElementById('insert');
+            insert.innerHTML = (num1 += num2);
+        };
+        function subtract() {
+            var num1 = document.getElementById('number1').value;
+            var num2 = document.getElementById('number2').value;
+            var insert = document.getElementById('insert');
+            insert.innerHTML = (num1 -= num2);
+        }
+        function divide() {
+            var num1 = document.getElementById('number1').value;
+            var num2 = document.getElementById('number2').value;
+            var insert = document.getElementById('insert');
+
+            if (num1 == 0 || num2 == 0) {
+                alert("Cannot divide by 0");
+            } else {
+                insert.innerHTML = (num1 / num2);
+            }
+        }
+    </script>
+
+</body>
+</html>

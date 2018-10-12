@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        <li>Start</li>
+        <li>Ask for gross pay</li>
+        <li>Take gross pay as an input</li>
+        <li>Take additional deducitons if any</li>
+        <li>Factor in State taxes</li>
+        <li>Factor in Federal taxes</li>
+        <li>Factor in Fica taxes</li>
+        <li>Display net pay</li>
+        <li>Finish</li>
+
+        <input type="text" id="grossPay" placeholder="Gross Pay">
+        <input type="text" id="addDed" placeholder="Additional Deduction">
+        <select name="" id="married">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+        </select>
+        <button id="calculate" onclick="taxes()">Submit</button>
+        <br>
+        <span id="insert"></span>
+    </ol>
+    <script>
+        function taxes(){
+            var grossPay = parseFloat(document.getElementById("grossPay").value);
+            var married = document.getElementById("married").value;
+            var addDed = document.getElementById("addDed").value;
+            var insert = document.getElementById("insert");
+            var tax15 = .15;
+            var tax25 = .25;
+            if (grossPay <= 21450 && married == 'single') {
+                console.log(married, '15%')
+                insert.innerHTML = (grossPay - (grossPay * tax15 - addDed));
+            } else if (grossPay <= 35800 && married == 'married') {
+                console.log(married, '15%')
+                insert.innerHTML = (grossPay - (grossPay * tax15 - addDed));
+            } else if (grossPay > 21450 && married == 'single') {
+                console.log(married, '25%')
+                insert.innerHTML = (grossPay - (grossPay * tax25 - addDed));
+            } else if (grossPay > 35800 && married == 'married') {
+                console.log(married, '25%')
+                insert.innerHTML = (grossPay - (grossPay * tax25 - addDed));
+            }
+        };
+    </script>
+</body>
+</html>
