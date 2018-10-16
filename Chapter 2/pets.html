@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pet Finder</title>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <style>
+        #display {
+            font-size: 100px;
+            color: red;
+        }
+    </style>
+</head>
+<body onload="initialLoad()">
+    <h1>Pet Finder</h1>
+    <ol>
+        <li>Not Mammal</li>
+        <ol>
+            <li>Doesnt have scales</li>
+            <ol>
+                <li>Has 8 legs</li>
+                <ol>
+                    <li>Spider</li>
+                </ol>
+                <li>Sings</li>
+                <ol>
+                    <li>Parrot</li>
+                </ol>
+            </ol>
+        </ol>
+        <ol>
+            <li>Has scales</li>
+            <ol>
+                <li>Slithers</li>
+                <ol>
+                    <li>Snake</li>
+                </ol>
+            </ol>
+            <ol>
+                <li>Has gills</li>
+                <ol>
+                    <li>Fish</li>
+                </ol>
+            </ol>
+        </ol>
+        <li>Mammal</li>
+        <ol>
+            <li>If it is tiny</li>
+            <ol>
+                <li>Small ears</li>
+                <ol>
+                    <li>Hamster</li>
+                </ol>
+            </ol>
+            <ol>
+                <li>Big ears</li>
+                <ol>
+                    <li>Rabit</li>
+                </ol>
+            </ol>
+        </ol>
+        <ol>
+            <li>Isnt tiny</li>
+            <ol>
+                <li>Is Man's Best friend</li>
+                <ol>
+                    <li>Dog</li>
+                </ol>
+            </ol>
+            <ol>
+                <li>Is it annoying as shit?</li>
+                <ol>
+                    <li>Cat</li>
+                </ol>
+            </ol>
+        </ol>
+        <li>
+            If it isnt a mammal
+            If it doesnt have scales
+            Spider = Does it have 8 legs
+        </li>
+        <li>
+            If it isnt a mammal
+            If it doesnt have scales
+            Parrot = Does it sing
+        </li>
+        <li>
+            If it isnt a mammal
+            If it has scales
+            Snake = Does it slither
+        </li>
+        <li>
+            If it isnt a mammal
+            If it has scales
+            Fish = Does it have gills
+        </li>
+        <li>
+            If it is a mammal
+            If it is tiny
+            Hamster = Does it have small ears
+        </li>
+        <li>
+            If it is a mammal
+            If it is tiny
+            Rabbit = Does it hop?
+        </li>
+        <li>
+            If it is a mammal
+            If it isnt tiny
+            Dog = Is it man's best friend?
+        </li>
+        <li>
+            If it is  mammal
+            If it isnt tiny
+            Cat = Is it annoying as shit
+        </li>
+    </ol>
+    <span id="display"></span>
+    <script>
+        function initialLoad(){
+            event.preventDefault();
+            var display = document.getElementById("display");
+            var question = prompt("Is it a mammal?");
+            if (question.toLowerCase() == "yes") {
+                question = prompt("Is it tiny?") 
+                if (question.toLowerCase() == "yes") {
+                    question = prompt("Does it have big ears?")
+                    if (question.toLowerCase() == "yes") {
+                        display.innerHTML = "It is a rabbit"
+                    } else {
+                        display.innerHTML = "It is a hamster"
+                    }
+
+                } else {
+                    question = prompt("Is it man's best friend?")
+                    if (question.toLowerCase() == "yes") {
+                        display.innerHTLM = "It is a Dog"
+                    } else {
+                        display.innerHTML = "It is a stupid cat"
+                    }
+                }
+            } else {
+                question = prompt("Does it have scales?")
+                if (question.toLowerCase() == "yes") {
+                    question = prompt("Does it have 8 legs?") 
+                    if (question.toLowerCase() == "yes") {
+                        display.innerHTML = "It is a spider";
+                    } else {
+                        display.innerHTML = "It is a parrot"
+                    }
+                } else {
+                    question = prompt("Does it have gills?")
+                    if (question.toLowerCase() == "yes") {
+                        display.innerHTML = "It is a fish"
+                    } else {
+                        display.innerHTML  = "It is a snake"
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+1. A __________ error does not prevent the program from running, but causes it to
+produce incorrect results.
+c. logic
+
+2. A __________ is a single function that the program must perform in order to
+satisfy the customer.
+a. task
+
+3. A(n) __________ is a set of well-defined logical steps that must be taken to perform
+a task.
+d. algorithm
+
+4. An informal language that has no syntax rules, and is not meant to be compiled
+or executed is called __________.
+b. pseudocode
+
+5. A __________ is a diagram that graphically depicts the steps that take place in a
+program.
+a. flowchart
+
+6. A(n) __________ is a set of statements that execute in the order that they appear.
+c. sequence structure
+
+7. A __________ is a sequence of characters that is used as data.
+c. string
+
+8. A __________ is a storage location in memory that is represented by a name.
+a. variable
+
+9. A __________ is any hypothetical person that is using a program and providing
+input for it.
+b. user
+
+10. A(n) __________ is a message that tells (or asks) the user to enter a specific value.
+d. prompt
+
+11. A(n) __________ sets a variable to a specified value.
+b. assignment statement
+
+12. In the expression 12 + 7, the values on the right and left of the + symbol are called
+__________.
+a. operands
+
+13. A(n) __________ operator raises a number to a power.
+c. exponent
+
+14. A(n) __________ operator performs division, but instead of returning the quotient
+it returns the remainder.
+a. modulus
+
+15. A(n) __________ specifies a variable’s name and data type.
+d. variable declaration
+
+16. Assigning a value to a variable in a declaration statement is called __________.
+b. initialization
+
+17. A(n) __________ variable is one that has been declared, but has not been initialized
+or assigned a value.
+a. undefined
+
+18. A(n) __________ is a variable whose content has a value that is read only and
+cannot be changed during the program’s execution.
+a. static variable
+
+19. A debugging process in which you imagine that you are the computer executing a
+program is called __________.
+d. hand tracing
+
+20. Short notes placed in different parts of a program, explaining how those parts of
+the program work, are called __________.
+a. comments
+
+True or False
+1. Programmers must be careful not to make syntax errors when writing pseudocode
+programs. false
+2. In a math expression, multiplication and division takes place before addition and
+subtraction. true
+3. Variable names can have spaces in them. flase
+4. In most languages, the first character of a variable name cannot be a number. true
+5. The name gross_pay is written in the camelCase convention. false
+6. In languages that require variable declarations, a variable’s declaration must
+appear before any other statements that use the variable. true
+7. Uninitialized variables are a common cause of errors. true
+8. The value of a named constant cannot be changed during the program’s execution. true
+9. Hand tracing is the process of translating a pseudocode program into machine
+language by hand. false
+10. Internal documentation refers to books and manuals that document a program,
+and are intended for use within a company’s programming department. true
+
+1. What does a professional programmer usually do first to gain an understanding
+of a problem? pseudocode
+2. What is pseudocode? fake code
+3. Computer programs typically perform what three steps? psudocode flow chart code
+4. What does the term user-friendly mean? friendly to users
+5. What two things must you normally specify in a variable declaration? data type and declaration statement
+6. What value is stored in uninitialized variables? null
