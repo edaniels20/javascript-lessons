@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: solid black 1px;
+        }
+        table th {
+            border: solid black 1px;
+        }
+        table td {
+            border-right: solid black 1px;
+        }
+    </style>
+</head>
+<body onload="loadItems()"> 
+    <table id="itemList"><tr><th>Number</th><th>ItemName</th><th>cost</th></tr></table>
+
+    <table id="cartList"></table>
+    <h1>Shopping Cart</h1>
+    <ol>
+        <li>Prompt user to choose items that they want</li>
+        <li>Choices of items are key=menuItem value=price ham: 5, turkey: 6, chicken: 8, beef: 6, tofu: 4;</li>
+        <li>if input in menu{for item in menu{shoppingCart.push(input)}}else(prompt="Item not found")</li>
+        <li>if input = "done" confirm="Are you sure you are done shopping?"</li>
+        <li>take value of items in cart and add together</li>
+        <li>multiply total value by .07 to get sales tax</li>
+        <li>display total value + sales tax</li>
+    </ol>
+
+    <form action="#">
+        <button onclick="shoppingCart()">Submit</button>
+    </form>
+
+    <table id="recipt"></table>
+
+    <script>
+        var menu = [
+            {
+                number: 1,
+                name: "Ham",
+                price:  5,
+            },
+            {
+                number: 2,
+                name: "Turkey",
+                price:  6
+            },
+            {
+                number: 3,
+                name: "Chicken",
+                price:  8
+            },
+            {
+                number: 4,
+                name: "beef",
+                price:  6
+            },
+            {
+                number: 5,
+                name: "Tofu",
+                price: 4
+            }];
+        var cart = [];
+        var display = document.getElementById("itemList");
+        function loadItems()  {
+            var output = "<tr><th>Item #</th><th>Product</th><th>Price</th></tr>"
+            menu.forEach(function(el, obj){
+                output += "<tr><td>" + el.number + "</td><td>" + el.name + "</td><td> $" + el.price.toFixed(2) + "</td>"
+            })
+            display.innerHTML = output
+        }
+
+        function mathafication(cart) {
+            cost = 0;
+            var taxes;
+            cart.forEach(function(el, obj){
+                cost += el.price
+                console.log(cost)
+            })
+            return cost
+        }
+
+        function shoppingCart() {
+            var quant = 0;
+            var shopping = true;
+            while (shopping === true) {
+                var input = prompt("Pick an item number");
+                if (isNaN(input) || input === "") {
+                    alert("Must be a number")
+                } else if (input > 0 && input < 6) {
+                    checkCart(parseInt(input));
+                } else if (input === null) {
+                    checkout();
+                    shopping = false;
+                } else {
+                    alert("Not a valid item")
+                }
+            }
+        }
+
+        function checkout() {
+            var output = "<tr><th>Qnty #</th><th>Product</th><th>Price</th></tr>"
+            var display = document.getElementById("recipt")
+            var subTotal = mathafication(cart).toFixed(2);
+            var taxes = mathafication(cart) * .07.toFixed(2);
+            var total = parseFloat(subTotal) + parseFloat(taxes);
+            cart.forEach(function(el, obj){
+                output += "<tr><td>" + el.count + "</td><td>" + el.name + "</td><td> $" + el.price.toFixed(2) + "</td>"
+            });
+            display.innerHTML = output + "<tr><td>SubTotal</td><td>" + subTotal + "</td><td>Taxes</td><td>" + taxes.toFixed(2) + "</td><td>Total</td><td>" + total.toFixed(2)
+        }
+        
+
+        function checkCart(item) {
+            item = menu[(item - 1)];
+            found = false;
+
+            cart.forEach(function(el, obj) {
+                if (item.name === el.name){
+                    el.count += 1;
+                    el.price += item.price;
+                    found = true;
+                    console.log(el)
+                }
+            });
+
+            if(!found) {
+                cart.push({
+                    name: item.name,
+                    price: item.price,
+                    count: 1
+                })
+            }
+
+            console.log(mathafication(cart));
+            
+
+            if(!window.confirm("Click okay to keep shopping if not click cancel")) {
+                shopping = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" onsubmit="heroPicker()">
+        <input type="text" id="namePicker">
+        <button type="submit">Submit</button>
+    </form>
+    <span id="display"></span>
+    <script>
+        function heroPicker() {
+            event.preventDefault();
+            var nameChoice = document.getElementById("namePicker").value;
+            var preFix = ["The awesome ", "The amazing ", "The talented ", "The magnificent "];
+            var name = [" Ethan ", " Hulk ", " Spiderman ", " Thor "]
+            var lastName = [" the meme lord ", " i smash ", " slings webs ", " the good guy "]
+            var display = document.getElementById("display");
+
+            console.log(indexPicker(preFix));
+
+            var nameOutput = (name != '') ? nameChoice : name[indexPicker(name)]; 
+
+            display.innerHTML = preFix[indexPicker(preFix)] + nameOutput + lastName[indexPicker(lastName)]
+        }
+        function indexPicker(array) {
+            return Math.round(Math.random() * (array.length - 1));
+        }
+    </script>
+</body>
+</html>

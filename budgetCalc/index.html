@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" onsubmit="budgetCalc()">
+        <p>Total Income</p>
+        <input type="text" id="totalIncome">
+        <h2>Primary Expenses</h2>
+        <p>Car payment</p>
+        <input type="text" id="car">
+        <p>House payment/rent</p>
+        <input type="text" id="house">
+        <p>Food</p>
+        <input type="text" id="food">
+        <p>Utilities</p>
+        <input type="text" id="utilities">
+        <p>Fuel</p>
+        <input type="text" id="fuel">
+
+        <h2>Entertainment</h2>
+        <p>Netflix</p>
+        <input type="text" id="netflix">
+        <p>Hulu</p>
+        <input type="text" id="hulu">
+        <p>Youtube</p>
+        <input type="text" id="youtube">
+        <p>Amazon</p>
+        <input type="text" id="amazon">
+        <p>Gaming</p>
+        <input type="text" id="gaming">
+        <button type="submit">Submit</button>
+    </form>
+    <span id="display"></span>
+    <script>
+        function budgetCalc() {
+            event.preventDefault();
+            var totalIncome = document.getElementById("totalIncome").value;
+            var display = document.getElementById("display");
+            var primaryExpenses = 0;
+            var entertainment = 0;
+            var taxBracket = 0;
+            var taxes;
+            var totalExpenses;
+            var expenses = {
+                primaryExpenses: [
+                    document.getElementById("car").value,
+                    document.getElementById("house").value,
+                    document.getElementById("utilities").value,
+                    document.getElementById("food").value,
+                    document.getElementById("fuel").value,
+                ],
+                entertainment: [
+                    document.getElementById("netflix").value,
+                    document.getElementById("hulu").value,
+                    document.getElementById("youtube").value,
+                    document.getElementById("amazon").value,
+                    document.getElementById("gaming").value
+                ]}
+            if (totalIncome == ""){
+                totalIncome = 0;
+            }
+            for (var i in expenses.primaryExpenses) {
+                if (expenses.primaryExpenses[i] == "") {
+                    expenses.primaryExpenses[i] = 0;
+                } else {
+                    expenses.primaryExpenses[i] = parseFloat(expenses.primaryExpenses[i])
+                }
+            }
+            for (var i in expenses.entertainment) {
+                if (expenses.entertainment[i] == "") {
+                    expenses.entertainment[i] = 0;
+                } else {
+                    expenses.entertainment[i] = parseFloat(expenses.entertainment[i])
+                }
+            }
+
+            for (var i in expenses.primaryExpenses) {
+                primaryExpenses += expenses.primaryExpenses[i];
+            }
+            for (var i in expenses.entertainment) {
+                entertainment += expenses.entertainment[i];
+            }
+            if (totalIncome < 9525) {
+                taxBracket = .12
+            } else if (totalIncome < 38700) {
+                taxBracket = .22
+            } else if (totalIncome < 82500) {
+                taxBracket = .24
+            } else if (totalIncome < 157500) {
+                taxBracket = .32
+            } else if (totalIncome < 200000) {
+                taxBracket = .35
+            } else {
+                taxBracket = .37
+            }
+            taxes = totalIncome * taxBracket;
+            netIncome = totalIncome - taxes 
+            totalExpenses = entertainment + primaryExpenses
+            moneyLeft = netIncome - totalExpenses
+            display.innerHTML = "You will have " + moneyLeft + " left in your budget with the total expenses for primary expenses being " + primaryExpenses + " and expenses for entertainment purposes being " + entertainment + " thank you for using Ethan's budget caculator!"
+        }
+    </script>
+</body>
+</html>
