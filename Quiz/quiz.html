@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stupid Psudocode</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="psudoCode" id="psudoCode">
+                    <h1>What kind of developer are you?</h1>
+                    <p>Take 5 questions and output what kind of developer you are</p>
+                    <ol>
+                        <li>Question 1</li>
+                        <ul>
+                            <li>If you are presented with a project what is your process for finishing the project?</li>
+                            <ul>
+                                <li>Wait till the last minute to start work.</li>
+                                <li>Get started early but take breaks inbetween problems</li>
+                                <li>Work hard until the problem is solved</li>
+                            </ul>
+                        </ul>
+                        <li>Question 2</li>
+                        <ul>
+                            <li>You find a problem in your code what is your first corse of action?</li>
+                            <ul>
+                                <li>Skip over it and hope it fixes itself</li>
+                                <li>Ask a coworker for help and advice and listen and learn from the experiance</li>
+                                <li>Referance your Psudocode and if you cant figure it out step away from the problem or ask someone for help.</li>
+                            </ul>
+                        </ul>
+                        <li>Question 3</li>
+                        <ul>
+                            <li>You are finished with your work half way through the work day what do you do?</li>
+                            <ul>
+                                <li>Hide!</li>
+                                <li>Find something else to do.</li>
+                                <li>Debug what you wrote down when you are finished ask others to revise and help test it.</li>
+                            </ul>
+                        </ul>
+                        <li>Question 4</li>
+                        <ul>
+                            <li>You are presented with a project what is your first corse of action?</li>
+                            <ul>
+                                <li>Tackle the code head on without thinking about it "Cough Cough Noah"</li>
+                                <li>Think it out but dont write anything down and go off of memory "Cough Cough Ethan"</li>
+                                <li>Write down your thought process in psudocode using either text or flow chart for referance</li>
+                            </ul>
+                        </ul>
+                        <li>Question 5</li>
+                        <ul>
+                            <li>What do you do in your free time when you finish work?</li>
+                            <ul>
+                                <li>Drink heavily</li>
+                                <li>Spend time with friends or play video games</li>
+                                <li>Improve yourself as a developer and strive to learn more</li>
+                            </ul>
+                        </ul>
+                        <li>The outputs will be based off of the total value of the questions</li>
+                        <li>Outputs</li>
+                        <ol>
+                            <li>The beginner "You have just started getting into development and dont make the best choices. You tend to rush things and not get your thoughts in order before starting a project"</li>
+                            <li>The Intermediate "You are a young budding developer who has a bright looking future ahead of yourself!"</li>
+                            <li>The Rockstar "You have just started getting into development and dont make the best choices. You tend to rush things and not get your thoughts in order before starting a project."</li>
+                        </ol>
+                    </ol>
+                    <button onclick="tryIt()">Try it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="quiz" id="quiz">
+                    <div class="question1" id="question1">
+                        <p>If you are presented with a project what is your process for finishing the project?</p>*/
+                        <input type="radio" name="answer1" id="answer1" checked="checked" value="3"><label>[A]Wait till the last minute to start work.</label>
+                        <br>
+                        <input type="radio" name="answer1" id="answer1" value="6"><label>[B]Get started early but take breaks inbetween problems</label>
+                        <br>
+                        <input type="radio" name="answer1" id="answer1" value="12"><label>[C]Debug what you wrote down when you are finished ask others to revise and help test it.</label>
+                        <br>
+                        <button onclick="showHide(1)">Next</button>
+                    </div>
+                    <div class="question2" id="question2">
+                        <p>You find a problem in your code what is your first corse of action?</p>
+                        <input type="radio" name="answer2" id="answer2" checked="checked" value="3"><label>[A]Skip over it and hope it fixes itself</label>
+                        <br>
+                        <input type="radio" name="answer2" id="answer2" value="6"><label>[B]Ask a coworker for help and advice and listen and learn from the experiance</label>
+                        <br>
+                        <input type="radio" name="answer2" id="answer2" value="12"><label>[C]Referance your Psudocode and if you cant figure it out step away from the problem or ask someone for help.</label>
+                        <br>
+                        <button id="question2" onclick="showHide(2)">Next</button>
+                    </div>
+                    <div class="question3" id="question3">
+                        <p>You are finished with your work half way through the work day what do you do?</p>
+                        <input type="radio" name="answer3" id="answer3" checked="checked" value="3"><label>[A]Hide!</label>
+                        <br>
+                        <input type="radio" name="answer3" id="answer3" value="6"><label>[B]Find something else to do.</label>
+                        <br>
+                        <input type="radio" name="answer3" id="answer3" value="12"><label>[C]Debug what you wrote down when you are finished ask others to revise and help test it.</label>
+                        <br>
+                        <button id="question3" onclick="showHide(3)">Next</button>
+                    </div>
+                    <div class="question4" id="question4">
+                        <p>You are presented with a project what is your first corse of action?</p>
+                        <input type="radio" name="answer4" id="answer4" checked="checked" value="3"><label>[A]Tackle the code head on without thinking about it "Cough Cough Noah"</label>
+                        <br>
+                        <input type="radio" name="answer4" id="answer4" value="6"><label>[B]Think it out but dont write anything down and go off of memory "Cough Cough Ethan"</label>
+                        <br>
+                        <input type="radio" name="answer4" id="answer4" value="12"><label>[C]Write down your thought process in psudocode using either text or flow chart for referance</label>
+                        <br>
+                        <button id="question4" onclick="showHide(4)">Next</button>
+                    </div>
+                    <div class="question5" id="question5">
+                        <p>What do you do in your free time when you finish work?</p>
+                        <input type="radio" name="answer5" id="answer5" checked="checked" value="3"><label>[A]Drink heavily</label>
+                        <br>
+                        <input type="radio" name="answer5" id="answer5" value="6"><label>[B]Spend time with friends or play video games</label>
+                        <br>
+                        <input type="radio" name="answer5" id="answer5" value="12"><label>[C]Improve yourself as a developer and strive to learn more</label>
+                        <br>
+                        <button type="submit" id="question5" onclick="showResult(); quiz()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="result" id="result">
+                    <h2>Your results are in!</h2>
+                    <p>You are a</p>
+                    <span id="output"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function tryIt(){
+            event.preventDefault();
+            document.getElementById("psudoCode").style.display="none";
+            document.getElementById("quiz").style.display="block";
+            document.getElementById("question1").style.display="block";
+            console.log("Changed")
+        }
+        function showHide(id){
+            event.preventDefault();
+            var next = "question" + (parseInt(id) + 1)
+            var id = "question" + id;
+            document.getElementById(id).style.display="none"
+            document.getElementById(next).style.display="block"
+        }
+        function showResult(){
+            event.preventDefault();
+            document.getElementById("question5").style.display="none";
+            document.getElementById("result").style.display="block"
+            
+        }
+        function quiz() {
+            event.preventDefault();
+            var answer1 = document.querySelector('input[name = "answer1"]:checked').value;
+            var answer2 = document.querySelector('input[name = "answer2"]:checked').value;
+            var answer3 = document.querySelector('input[name = "answer3"]:checked').value;
+            var answer4 = document.querySelector('input[name = "answer4"]:checked').value;
+            var answer5 = document.querySelector('input[name = "answer5"]:checked').value;
+            var answers = [];
+            var answersTotal = 0;
+            var result;
+            var output = document.getElementById("output");
+            answers.push(parseInt(answer1), parseInt(answer2), parseInt(answer3), parseInt(answer4), parseInt(answer5));
+            for (i in answers){
+                answersTotal += answers[i];
+            }
+            console.log(answersTotal)
+            if (answersTotal >= 40) {
+                result = "<h2 class='resultHead'>\"Rockstar\"</h2> <br> <span class='resultStyle'>You are a skilled developer who takes the task that they are given gets done by or before the deadline. You arnt afraid to ask for help and take new information to heart!"
+            } else if (answersTotal >= 24) {
+                result = "<h2 class='resultHead'>\"Intermediate\"</h2> <br> <span class='resultStyle'>You are a young budding developer who has a bright looking future ahead of yourself!"
+            } else {
+                result = "<h2 class='resultHead'>\"Beginner\"</h2> <br> <span class='resultStyle'>You have just started getting into development and dont make the best choices. You tend to rush things and not get your thoughts in order before starting a project."
+            }
+            console.log(result)
+            output.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
