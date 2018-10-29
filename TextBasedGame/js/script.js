@@ -122,5 +122,4 @@ function combatMonster(mob) {
 function levelUp() {
     player.exp = 0;
     player.lvl++;
-    console.log(player.lvl)
 }
