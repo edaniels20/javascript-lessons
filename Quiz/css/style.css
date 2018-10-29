@@ -6,6 +6,10 @@ body {
     display: none;
 }
 
+button {
+    color: black;
+}
+
 .quiz p {
     font-size: 20px;
     color: white;

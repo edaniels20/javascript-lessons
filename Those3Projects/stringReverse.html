@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: grey;
+        }
+        ol {
+            padding-left: 0;
+        }
+        li {
+            list-style: none;
+            padding-left: 0;
+        }
+        .container{
+            padding: 100px 150px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            right: 30%;
+            top: 10%;
+            border-radius: 20px;
+            box-shadow: -1px -1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="psudo">
+            <h1>String flipper</h1>
+            <ol>
+                <li>Take input</li>
+                <li>Split input</li>
+                <li>Reverse the array</li>
+                <li>Join the array</li>
+                <li>Output the reversed string</li>
+            </ol>
+        </div>
+        <form action="#" onsubmit="reverseString()">
+            <input type="text" id="string">
+            <br>
+            <button type="submit">Reverse</button>
+        </form>
+        <span id="output"></span>
+    </div>
+    <script>
+        function reverseString() {
+            event.preventDefault();
+            var string = document.getElementById("string").value;
+            var splitString = string.split("");
+            var reverseString = splitString.reverse();
+            var result = splitString.join("");
+            var output = document.getElementById("output")
+
+            output.innerHTML = result;
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: grey;
+        }
+        ol {
+            padding-left: 0;
+        }
+        li {
+            list-style: none;
+            padding-left: 0;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .container{
+            padding: 75px 150px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            right: 25%;
+            top: 18%;
+            border-radius: 20px;
+            box-shadow: -1px -1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tip Calculator</h1>
+        <ol>
+            <li>Take input for dollar amount</li>
+            <li>Ask for % of either 10 15 20</li>
+            <li>Convert the percent into a decimal</li>
+            <li>multiply decimal by inpout</li>
+            <li>output amount to tip</li>
+        </ol>
+        <form action="#" onsubmit="tipCalculator()">
+            <input type="text" id="total">
+            <select name="tipPercent" id="tipPercent">
+                <option value=".1">10%</option>
+                <option value=".15">15%</option>
+                <option value=".2">20%</option>
+            </select>
+            <button type="submit">Calculate</button>
+        </form>
+        <span id="output"></span>
+    </div>
+    <script>
+        function tipCalculator() {
+            event.preventDefault();
+            var total = parseFloat(document.all.total.value);
+            var tipPercent = parseFloat(document.getElementById("tipPercent").value);
+            var output = document.getElementById("output");
+
+            var tipAmount = total * parseFloat(tipPercent);
+            
+            total += tipAmount
+
+            output.innerHTML = "You need to tip $" + tipAmount.toFixed(2) + "<br> The total cost will be $" + total.toFixed(2)
+        }
+    </script>
+</body>
+</html>

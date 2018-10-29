@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: grey;
+        }
+        ol {
+            padding-left: 0;
+        }
+        li {
+            list-style: none;
+            padding-left: 0;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .container{
+            padding: 75px 150px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            right: 22%;
+            top: 5%;
+            border-radius: 20px;
+            box-shadow: -1px -1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temp Calc</h1>
+        <ol>
+            <li>Take input for the current temp</li>
+            <li>Dropdown for each unit of measurement</li>
+            <li>Dropdown for what unit they want to convert it to</li>
+            <li>Convert all units to celcius</li>
+            <li>Convert celcius to the unit they want to do calculations for</li>
+            <li>Output the unit and the temp</li>
+        </ol>
+    
+        <form action="#" onsubmit="tempCalc()">
+            <p>Initial Temp & Unit</p>
+            <input type="text" id="initialTemp">
+            <select name="initialUnit" id="initialUnit">
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="celsius">Celsius</option>
+                <option value="kelvin">Kelvin</option>
+                <option value="newton">Newton Scale</option>
+                <option value="rankine">Rankine Scale</option>
+            </select>
+            <br>
+            <p>Conversion Unit</p>
+            <select name="conversionUnit" id="conversionUnit">
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="celsius">Celsius</option>
+                <option value="kelvin">Kelvin</option>
+                <option value="newton">Newton Scale</option>
+                <option value="rankine">Rankine Scale</option>
+            </select>
+            <br>
+            <button type="submit">Convert</button>
+        </form>
+        <span id="output"></span>
+    </div>
+
+    <script>
+        function tempCalc() {
+            event.preventDefault();
+            var initialTemp = parseFloat(document.getElementById("initialTemp").value);
+            var initialUnit = document.getElementById("initialUnit").value;
+            var conversionUnit = document.getElementById("conversionUnit").value;
+            var output = document.getElementById("output");
+            var convertedValue;
+            convertedValue = parseFloat(convertedValue);
+            var celsTemp = 0;
+            console.log(conversionUnit)
+            
+            if (initialUnit === "fahrenheit"){
+                celsTemp = (initialTemp - 32) / 1.8;
+            } else if (initialUnit === "celsius") {
+                celsTemp = initialTemp;
+            } else if (initialUnit === "kelvin") {
+                celsTemp = initialTemp + 273.15;
+            } else if (initialUnit === "newton") {
+                celsTemp = initialTemp / .33;
+            } else if (initialUnit === "rankine") {
+                celsTemp = (initialTemp - 491.67) * 5/9;
+            }
+
+            if (conversionUnit === "fahrenheit"){
+                convertedValue = celsTemp * 1.8 + 32;
+            } else if (conversionUnit === "celsius") {
+                convertedValue = celsTemp;
+            } else if (conversionUnit === "kelvin") {
+                convertedValue = celsTemp + 273.15;
+            } else if (conversionUnit === "newton") {
+                convertedValue = celsTemp * .33
+            } else if (conversionUnit === "rankine") {
+                convertedValue = (celsTemp * 273.15) * 5/9
+            }
+            
+            celsTemp = parseFloat(celsTemp);
+
+            output.innerHTML = "Taking " + "" + initialTemp + "" + "° " + initialUnit + " Converts to " + "" + convertedValue + "" + "°" + conversionUnit
+            
+        }
+    </script>
+</body>
+</html>
