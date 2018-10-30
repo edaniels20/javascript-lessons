@@ -11,6 +11,14 @@ img {
   padding-left: 0;
 }
 
+[type='radio'] {
+  visibility: hidden;
+}
+
+input[type='radio']:checked + img {
+  outline: solid orange;
+}
+
 .dungeon {
   width: auto;
   height: 100px;

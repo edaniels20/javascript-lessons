@@ -1,7 +1,10 @@
+var updateStats = document.getElementById("outputStats");
 var output = document.getElementById("output");
 var questsDone = 0;
 var combat = false;
 var mobHealth = document.getElementById("mobHealth");
+var activeQuest = [
+]
 var classes = {
     warrior: {
         ap: 3,
@@ -36,7 +39,18 @@ var quests = {
         killsToFinish: 4,
         expReward: 50,
         coins: 50,
-        turnedIn: false
+        turnedIn: false,
+        mobToKill: 'slime'
+    },
+    slimeKingQuest: {
+        active: false,
+        done: false,
+        kills: 0,
+        killsToFinish: 1,
+        expReward: 100,
+        coins: 200,
+        turnedIn: false,
+        mobToKill: 'slimeKing'
     }
 }
 var player = {
@@ -148,10 +162,15 @@ var monsters = {
 }
 
 function update() {
-    var update = document.getElementById("outputStats");
-    update.innerHTML = "<div class='container'><div class='row'><div class='col-sm-6 updateDivLeft'><img class='updateIcons' src='img/heart.png' alt='health'>: " + player.hp + "<br> <img class='updateIcons' src='img/manaHeart.png' alt='mana'>: " + player.stats.mp + "<br><img class='updateIcons' src='img/lvl.png' alt='lvl'>: " + player.lvl + "</div><div class='col-sm-6 updateDivRight'><img class='updateIcons' src='img/healthPotion.png' alt='healthPotion'>: " + player.inventory.hpPotions + "<br><img src='img/manaPotion.png' class='updateIcons' alt='manaPotions'>: " + player.inventory.mpPotions + "<br><img class='updateIcons' src='img/coin.png'>: " + player.coins + "</div></div></div>"; 
+    var questList = document.getElementById("activeQuest");
+    updateStats.innerHTML = "<div class='container'><div class='row'><div class='col-sm-6 updateDivLeft'><img class='updateIcons' src='img/heart.png' alt='health'>: " + player.hp + "<br> <img class='updateIcons' src='img/manaHeart.png' alt='mana'>: " + player.stats.mp + "<br><img class='updateIcons' src='img/lvl.png' alt='lvl'>: " + player.lvl + "</div><div class='col-sm-6 updateDivRight'><img class='updateIcons' src='img/healthPotion.png' alt='healthPotion'>: " + player.inventory.hpPotions + "<br><img src='img/manaPotion.png' class='updateIcons' alt='manaPotions'>: " + player.inventory.mpPotions + "<br><img class='updateIcons' src='img/coin.png'>: " + player.coins + "</div></div></div>"; 
     if (combat != true){
         mobHealth.innerHTML = "";
+    }
+    if (activeQuest.length <= 0){
+        questList.innerHTML = "<p>You have no active Quests"
+    } else {
+        questList.innerHTML = "<p>You need to kill " + activeQuest[0].kills + "/" + activeQuest[0].killsToFinish + " " + activeQuest[0].mobToKill + "</p>"
     }
 }
 
@@ -160,6 +179,7 @@ function loadFunc() {
 }
 function classPicker() {
     event.preventDefault();
+    // var updateStats = document.getElementById("outputStats");
     var classChoice = document.querySelector('input[name=class]:checked').value;
     var classStats = classes[classChoice];
     player.stats.ap = 0;
@@ -177,6 +197,7 @@ function classPicker() {
         player.stats.maxMp += classStats.maxMp;
         player.stats.mp += classStats.mp;
     }
+
     console.log(player.stats.ap, player.stats.char, player.stats.def, player.stats.luk, player.stats.mp)
     update();
     classSure(classChoice);
@@ -186,32 +207,43 @@ function play() {
     // var classChoice = document.querySelector('input[name=class]:checked').value;
 
     output.innerHTML = "<form onsubmit='classPicker()'><ul class='characterSelection'><li><h2>Warrior</h2><label> <input type='radio' name='class' id='chooseClass' value='warrior'><img src='img/warrior.png' alt='warrior'></label><p>A warrior has high defence but low damage low chance to dodge.</p></li><li><h2>Rogue</h2><label> <input type='radio' name='class' id='chooseClass' value='rogue'><img src='img/rogue.png' alt='rogue'></label><p>A rogue has low defence high chance to dodge med damage</p></li><li><h2>Mage</h2><label> <input type='radio' name='class' id='chooseClass' value='mage'><img src='img/mage.png' alt='mage'></label><p>A mage has low defence high damage but no chance to dodge</p></li></ul><button type='submit'>Choose</button></form>"
+
     // output.innerHTML = "<p>Would you like to explore a dungeon?</p><br><button onclick='start()'>Yes</button><button onclick='location.href=\"http://bfy.tw/KbHY\"'>No</button>"
 }
 
+function clearStats() {
+    updateStats.innerHTML = "";
+    console.log("dab")
+}
+
 function classSure(classChoice){
-    output.innerHTML = "<p>Are you sure you want to choose the " + classChoice + " class?</p><img src='img/" + classChoice + ".png'> <button onclick='mainMenu()'>Yes</button><button onclick='play()'>No</button>"
+    output.innerHTML = "<p>Are you sure you want to choose the " + classChoice + " class?</p><img src='img/" + classChoice + ".png'> <button onclick='mainMenu()'>Yes</button><button onclick='clearStats(); play()'>No</button>"
 }
 
 function dungeon() {
     combat = false;
     update();
     output.innerHTML = "<p>What would you like to do in the dungeon?</p><button onclick='slime()'>Fight normal slime</button><br><button onclick='mainMenu()'>Return to menu</button>";
+    if (quests.slimeQuest.turnedIn == true) {
+        output.innerHTML = "<p>What would you like to do in the dungeon?</p><button onclick='slime()'>Fight normal slime</button><button onclick='kingSlime()'>Fight King Slime!</button><br><button onclick='mainMenu()'>Return to menu</button>";
+    }
 }
 
 function slime(){
     combat = true;
     update();
-    output.innerHTML = "<img class=\"img-responsive\" src=\"img/slime.jpg\" alt=\"slime.jpg\"> <span>LVL</span>" + monsters.normal.slime.lvl + "<br><button onclick=\"combatMonster('normal', 'slime')\">Roll</button><button onclick='useHealthPotion()'>Heal</button><button onclick='useManaPotion()'>Mana</button><br><button onclick='dungeon()'>Back to dungeon</button>"
+    output.innerHTML = "<img class=\"img-responsive\" src=\"img/slime.png\" alt=\"slime.jpg\"> <span>LVL</span>" + monsters.normal.slime.lvl + "<br><button onclick=\"combatMonster('normal', 'slime')\">Roll</button><button onclick='useHealthPotion()'>Heal</button><button onclick='useManaPotion()'>Mana</button><br><button onclick='dungeon()'>Back to dungeon</button>"
 }
 
 function kingSlime() {
-
+    combat = true;
+    update();
+    output.innerHTML = "<img class=\"img-responsive\" src=\"img/slimeking.png\" alt=\"slime.jpg\"> <span>LVL</span>" + monsters.boss.slimeKing.lvl + "<br><button onclick=\"combatMonster('boss', 'slimeKing')\">Roll</button><button onclick='useHealthPotion()'>Heal</button><button onclick='useManaPotion()'>Mana</button><br><button onclick='dungeon()'>Back to dungeon</button>"
 }
 
 function mainMenu() {
     output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
-    if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false){
+    if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false || quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
         output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button><p>Go to town you have a quest to accept!</p>"
     }
 }
@@ -223,18 +255,43 @@ function town() {
 function questBoard() {
     if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false){
         output.innerHTML = "<button onclick='slimeQuest()'>Slay Those Slimes!</button><br><button onclick='town()'>Return To Town</button>";
+    } if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
+        output.innerHTML = "<button onclick='slimeKingQuest()'>The Big Slime!</button><br><button onclick='town()'>Return To Town</button>";
     }
 }
 
 function slimeQuest() {
     if (quests.slimeQuest.active == false && quests.slimeQuest.done == false){
         quests.slimeQuest.active = true;
+        activeQuest.push(quests.slimeQuest)
     } else if (quests.slimeQuest.done == true && quests.slimeQuest.turnedIn == false){
         player.exp += quests.slimeQuest.expReward;
         console.log(quests.slimeQuest.expReward)
         player.coins += quests.slimeQuest.coins;
         questsDone++;
         quests.slimeQuest.turnedIn = true;
+        activeQuest.length = 0;
+        console.log("quest done")
+        if (player.exp >= player.expToLevel){
+            update();
+            levelUp();
+        }
+    }
+    update();
+    town();
+}
+
+function slimeKingQuest() {
+    if (quests.slimeKingQuest.active == false && quests.slimeKingQuest.done == false){
+        quests.slimeKingQuest.active = true;
+        activeQuest.push(quests.slimeKingQuest)
+    } else if (quests.slimeKingQuest.done == true && quests.slimeKingQuest.turnedIn == false){
+        player.exp += quests.slimeKingQuest.expReward;
+        console.log(quests.slimeKingQuest.expReward)
+        player.coins += quests.slimeKingQuest.coins;
+        questsDone++;
+        quests.slimeKingQuest.turnedIn = true;
+        activeQuest.length = 0;
         console.log("quest done")
         if (player.exp >= player.expToLevel){
             update();
@@ -310,6 +367,12 @@ function combatMonster(type, mob) {
             if(quests.slimeQuest.killsToFinish == quests.slimeQuest.kills) {
                 quests.slimeQuest.done = true;
                 quests.slimeQuest.active = false;
+            }
+        } else if (mob == 'slimeKing' && quests.slimeKingQuest.active == true) {
+            quests.slimeKingQuest.kills++
+            if(quests.slimeKingQuest.killsToFinish == quests.slimeKingQuest.kills) {
+                quests.slimeKingQuest.done = true;
+                quests.slimeKingQuest.active = false;
             }
         }
         if (levelDif < 3){
