@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="loadFunc()">
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
@@ -17,8 +17,8 @@
             <div class="col-sm-6">
                 <div class="jumbotron">
                     <h1>Dungeons Of Ethor</h1>
-                    <button onclick="play()">PLAY</button>
                     <span id="output"></span>
+                    <span id="outputStats"></span>
                 </div>
             </div>
         </div>

@@ -5,4 +5,50 @@
 img {
   width: 100%;
 }
+
+.characterSelection {
+  list-style: none;
+  padding-left: 0;
+}
+
+[type='radio'] {
+  display: none;
+}
+
+.dungeon {
+  width: auto;
+  height: 100px;
+}
+
+.town {
+  width: 100px;
+  height: 100px;
+}
+
+.Potion {
+  width: 100px;
+  height: auto;
+}
+
+.updateIcons {
+  width: 20px;
+}
+
+.updateDivLeft {
+  text-align: left;
+}
+
+.updateDivRight {
+  text-align: right;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 /*# sourceMappingURL=style.css.map */
