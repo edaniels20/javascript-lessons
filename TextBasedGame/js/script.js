@@ -1,4 +1,7 @@
 var output = document.getElementById("output");
+var questsDone = 0;
+var combat = false;
+var mobHealth = document.getElementById("mobHealth");
 var classes = {
     warrior: {
         ap: 3,
@@ -25,10 +28,22 @@ var classes = {
         def: 3
     } //Starting Stats will be ap: 2 char: 5 luk: 5, mp: 0, def: 3
 }
+var quests = {
+    slimeQuest: {
+        active: false,
+        done: false,
+        kills: 0,
+        killsToFinish: 4,
+        expReward: 50,
+        coins: 50,
+        turnedIn: false
+    }
+}
 var player = {
-    coins: 30,
+    coins: 0,
     maxHp: 20,
     hp: 20,
+    expToLevel: 100,
     exp: 0,
     lvl: 1,
     class: "",
@@ -135,6 +150,9 @@ var monsters = {
 function update() {
     var update = document.getElementById("outputStats");
     update.innerHTML = "<div class='container'><div class='row'><div class='col-sm-6 updateDivLeft'><img class='updateIcons' src='img/heart.png' alt='health'>: " + player.hp + "<br> <img class='updateIcons' src='img/manaHeart.png' alt='mana'>: " + player.stats.mp + "<br><img class='updateIcons' src='img/lvl.png' alt='lvl'>: " + player.lvl + "</div><div class='col-sm-6 updateDivRight'><img class='updateIcons' src='img/healthPotion.png' alt='healthPotion'>: " + player.inventory.hpPotions + "<br><img src='img/manaPotion.png' class='updateIcons' alt='manaPotions'>: " + player.inventory.mpPotions + "<br><img class='updateIcons' src='img/coin.png'>: " + player.coins + "</div></div></div>"; 
+    if (combat != true){
+        mobHealth.innerHTML = "";
+    }
 }
 
 function loadFunc() {
@@ -175,16 +193,56 @@ function classSure(classChoice){
     output.innerHTML = "<p>Are you sure you want to choose the " + classChoice + " class?</p><img src='img/" + classChoice + ".png'> <button onclick='mainMenu()'>Yes</button><button onclick='play()'>No</button>"
 }
 
-function start(){
-    output.innerHTML = "<p>You run into a slime</p><img class=\"img-responsive\" src=\"img/slime.jpg\" alt=\"slime.jpg\"> <span>LVL</span>" + monsters.normal.slime.lvl + "<br><button onclick=\"combatMonster('normal', 'slime')\">Roll</button><button onclick='useHealthPotion()'>Heal</button><button onclick='useManaPotion()'>Mana</button>"
+function dungeon() {
+    combat = false;
+    update();
+    output.innerHTML = "<p>What would you like to do in the dungeon?</p><button onclick='slime()'>Fight normal slime</button><br><button onclick='mainMenu()'>Return to menu</button>";
+}
+
+function slime(){
+    combat = true;
+    update();
+    output.innerHTML = "<img class=\"img-responsive\" src=\"img/slime.jpg\" alt=\"slime.jpg\"> <span>LVL</span>" + monsters.normal.slime.lvl + "<br><button onclick=\"combatMonster('normal', 'slime')\">Roll</button><button onclick='useHealthPotion()'>Heal</button><button onclick='useManaPotion()'>Mana</button><br><button onclick='dungeon()'>Back to dungeon</button>"
+}
+
+function kingSlime() {
+
 }
 
 function mainMenu() {
-    output.innerHTML = "<p>What would you like to do?</p><button onclick='start()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'</button><p>Dungeon</p><button onclick='town()'><img class='town' src='img/town.png' alt='town'</button><p>Town</p>"
+    output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+    if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false){
+        output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button><p>Go to town you have a quest to accept!</p>"
+    }
 }
 
 function town() {
-    output.innerHTML = "<p>What would you like to buy in town?</p><button onclick='buyHealthPotion()' class='Potion' id='health'><img src='img/healthPotion.png' alt='Health Potion'>Health</button><button onclick='buyManaPotion()' class='Potion' id='mana'><img src='img/manaPotion.png' alt='Mana Potion'>Mana</button><br><br><button onclick='mainMenu()'>Leave</button>";
+    output.innerHTML = "<p>What would you like to buy in town?</p><button onclick='buyHealthPotion()' class='Potion' id='health'><img src='img/healthPotion.png' alt='Health Potion'>Health</button><button onclick='buyManaPotion()' class='Potion' id='mana'><img src='img/manaPotion.png' alt='Mana Potion'>Mana</button><br><br><button onclick='mainMenu()'>Leave</button><br><button onclick='questBoard()'>Quest Listings</button>";
+}
+
+function questBoard() {
+    if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false){
+        output.innerHTML = "<button onclick='slimeQuest()'>Slay Those Slimes!</button><br><button onclick='town()'>Return To Town</button>";
+    }
+}
+
+function slimeQuest() {
+    if (quests.slimeQuest.active == false && quests.slimeQuest.done == false){
+        quests.slimeQuest.active = true;
+    } else if (quests.slimeQuest.done == true && quests.slimeQuest.turnedIn == false){
+        player.exp += quests.slimeQuest.expReward;
+        console.log(quests.slimeQuest.expReward)
+        player.coins += quests.slimeQuest.coins;
+        questsDone++;
+        quests.slimeQuest.turnedIn = true;
+        console.log("quest done")
+        if (player.exp >= player.expToLevel){
+            update();
+            levelUp();
+        }
+    }
+    update();
+    town();
 }
 
 function buyHealthPotion() {
@@ -223,13 +281,16 @@ function combatMonster(type, mob) {
         }
     }
 
+    if (combat == true){
+        mobHealth.innerHTML = "<img src='img/heart.png' class='updateIcons' alt='heart'>: " + monsters[type][mob].hp;
+    }
+
     if (player.stats.def == 1){
         monsterDamage = monsters[type][mob].ap * .9;
     } else if (player.stats.def == 3){
         monsterDamage = monsters[type][mob].ap * .7;
     } else {
         monsterDamage = monsters[type][mob].ap * .3;
-        console.log("playing warrior")
     }
 
     if (monsterDamage < 1) {
@@ -244,13 +305,20 @@ function combatMonster(type, mob) {
     if (monsters[type][mob].hp <= 0){
         monsters[type][mob].hp = 0;
         monsters[type][mob].hp += monsters[type][mob].maxHp;
+        if (mob == "slime" && quests.slimeQuest.active == true) {
+            quests.slimeQuest.kills++
+            if(quests.slimeQuest.killsToFinish == quests.slimeQuest.kills) {
+                quests.slimeQuest.done = true;
+                quests.slimeQuest.active = false;
+            }
+        }
         if (levelDif < 3){
             player.exp += monsters[type][mob].exp;
         }
         player.coins += monsters[type][mob].coins;
         // mainMenu();
     }
-    if (player.exp >= 100) {
+    if (player.exp >= player.expToLevel) {
         levelUp(monsters[type][mob].lvl)
     }
     if (player.hp <= 0){
@@ -286,11 +354,10 @@ function useManaPotion() {
 }
 
 function levelUp(monsterLevel) {
-    var levelDif = player.lvl - monsterLevel;
-    console.log(levelDif)
     player.exp = 0;
     player.lvl++;
     player.maxHp += 5;
+    player.expToLevel += player.expToLevel * .5
     player.hp = player.maxHp;
 }
 

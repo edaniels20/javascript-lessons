@@ -11,10 +11,6 @@ img {
   padding-left: 0;
 }
 
-[type='radio'] {
-  display: none;
-}
-
 .dungeon {
   width: auto;
   height: 100px;
@@ -40,15 +36,5 @@ img {
 
 .updateDivRight {
   text-align: right;
-}
-
-.clearfix {
-  overflow: auto;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
 }
 /*# sourceMappingURL=style.css.map */
