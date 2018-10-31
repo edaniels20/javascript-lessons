@@ -1,12 +1,34 @@
 function town() {
-    output.innerHTML = "<p>What would you like to buy in town?</p><button onclick='buyHealthPotion()' class='Potion' id='health'><img src='img/healthPotion.png' alt='Health Potion'>Health</button><button onclick='buyManaPotion()' class='Potion' id='mana'><img src='img/manaPotion.png' alt='Mana Potion'>Mana</button><br><br><button onclick='mainMenu()'>Leave</button><br><button onclick='questBoard()'>Quest Listings</button>";
+    output.innerHTML = `
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 townPic">
+                <img src="img/town.png" alt="town">
+            </div>
+            <div class="col-sm-12">
+                <button onclick="shop()"><img class="shopButton" src="img/healthPotion.png" alt=""><br>Shop</button>
+                <button onclick="questBoard()"><img class="shopButton" src="img/guard.png" alt="guard"><br>Quest</button>
+                <button onclick="rest()"><img class="shopButton" src="img/bed.png" alt="bed"><br>Rest</button>
+                <button onclick="mainMenu()"><img class="leaveImg" src="img/leave.png" alt="leaveSign"><br>Leave</button>
+            </div>
+        </div>
+    </div>
+    `
 }
 
 function questBoard() {
     if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false){
-        output.innerHTML = "<button onclick='slimeQuest()'>Slay Those Slimes!</button><br><button onclick='town()'>Return To Town</button>";
-    } if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
-        output.innerHTML = "<button onclick='slimeKingQuest()'>The Big Slime!</button><br><button onclick='town()'>Return To Town</button>";
+        output.innerHTML = `<img class="npc" src="img/guardBig.png" alt="guard">
+                            <br>
+                            <button onclick='slimeQuestDescription()'>Slay Those Slimes!</button>
+                            <br>
+                            <button onclick='town()'>Return To Town</button>
+                            `;
+    } 
+    if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
+        output.innerHTML = `<button onclick='slimeKingQuest()'>The Big Slime!</button>
+                            <br>
+                            <button onclick='town()'>Return To Town</button>`;
     }
 }
 
@@ -63,11 +85,53 @@ function buyHealthPotion() {
     update()
 }
 
-
 function buyManaPotion() {
     if (player.coins >= 30) {
         player.coins -= 30;
         player.inventory.mpPotions ++
     }
     update()
+}
+
+function shop() {
+    output.innerHTML = `
+    <img class="potionShopImg" src="img/potionShop.png" alt="wizard">
+    <button onclick='buyHealthPotion()' class='Potion' id='health'><img src='img/healthPotion.png' alt='Health Potion'>Health 30c</button>
+    <button onclick='buyManaPotion()' class='Potion' id='mana'><img src='img/manaPotion.png' alt='Mana Potion'>Mana 30c</button>
+    <br>
+    <button class="leaveShopButton" onclick="town()">Back to town</button>
+    `
+}
+
+function slimeQuestDescription() {
+    output.innerHTML = ''
+    if (quests.slimeQuest.active == false || quests.slimeQuest.done == true) {
+        var slimeQuestText = new Typed('#output', {
+            strings: ['<h2>Slay Those Slimes!</h2><p class="questText">Those damn slimes are escaping the dungeon at a rapid rate! We need to reduce their population asap. I need you to go to the dungeon and slay 4 slimes for me! Do you think you can do it?</p><button class="questButton" onclick="slimeQuest()">Accept</button><button class="questButton" onclick="questBoard()">Decline</button>'],
+            typeSpeed: 10,
+            loop: false,
+        });
+    } else {
+        slimeQuest();
+    }
+}
+
+function rest() {
+    output.innerHTML = `
+                        <img src="img/inn.png" alt="inn">
+                        <p>Would you like to stay at the inn? It will cost 50c</p>
+                        <button onclick="sleep()">Yes</button>
+                        <button onclick="town()">No</button>
+                        `
+}
+
+function sleep() {
+    if (player.coins >= 50){
+        player.coins -= 50;
+        player.hp = player.maxHp;
+        update();
+    } else {
+        console.log("You dont have enough gold!")
+        return false;
+    }
 }

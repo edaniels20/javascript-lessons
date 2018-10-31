@@ -1,3 +1,12 @@
+body {
+  font-family: 'Smythe', cursive;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
 .jumbotron {
   text-align: center;
 }
@@ -44,5 +53,67 @@ input[type='radio']:checked + img {
 
 .updateDivRight {
   text-align: right;
+}
+
+.leftTown {
+  text-align: left;
+}
+
+.shopButton {
+  width: 50px;
+  height: 50px;
+}
+
+.leaveImg {
+  width: 50px;
+  height: 50px;
+}
+
+.leaveButton {
+  position: relative;
+  right: 0;
+}
+
+.rightTown {
+  text-align: right;
+}
+
+.townPic {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.leaveShopButton {
+  margin-top: 20px;
+}
+
+.potionShopImg {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 400px;
+}
+
+.typed-cursor {
+  display: none;
+}
+
+.questText {
+  margin: auto;
+  width: 300px;
+}
+
+.questNotification {
+  color: orange;
+  margin-bottom: 0;
+}
+
+.questButton {
+  margin-top: 20px;
+  background: none;
+  border: none;
+}
+
+.npc {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=style.css.map */

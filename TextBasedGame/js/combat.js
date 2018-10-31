@@ -3,19 +3,18 @@ function combatMonster(type, mob) {
     var monsterDamage;
     var levelDif = player.lvl - monsters[type][mob].lvl;
     var dodgeChance = Math.round(Math.random() * 10 + Number(player.stats.luk));
+    updateMonsterHealth(type, mob)
     if (player.class == "mage"){
         player.stats.mp -= 5;
         if (player.stats.mp <= 0) {
             prompt("Dont have enough mana for that must run away!")
+            combat = false;
+            update();
             mainMenu();
         }
         if (player.stats.mp < 0){
             player.stats.mp = 0;
         }
-    }
-
-    if (combat == true){
-        mobHealth.innerHTML = "<img src='img/heart.png' class='updateIcons' alt='heart'>: " + monsters[type][mob].hp;
     }
 
     if (player.stats.def == 1){

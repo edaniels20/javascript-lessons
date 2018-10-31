@@ -55,7 +55,7 @@ var quests = {
     }
 }
 var player = {
-    coins: 0,
+    coins: 100,
     maxHp: 20,
     hp: 20,
     expToLevel: 100,
