@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="hello">Hello</h1>
+    <span id="output"></span>
+    <br>
+    <button onclick="combine()">Dab</button>
+    <script>
+        function combine() {
+            var hello = document.getElementById("hello").textContent;
+            var output = document.getElementById("output");
+            output.innerHTML = hello + " World";
+        }
+    </script>
+</body>
+</html>

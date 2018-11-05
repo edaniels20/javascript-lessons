@@ -3,6 +3,7 @@ var output = document.getElementById("output");
 var mobHealth = document.getElementById("mobHealth");
 var questsDone = 0;
 var combat = false;
+var kingSlimeText = 0;
 var activeQuest = [
     
 ]

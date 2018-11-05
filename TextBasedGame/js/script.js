@@ -38,11 +38,20 @@ function classSure(classChoice){
 }
 
 function mainMenu() {
-    if (quests.slimeQuest.active == false){
+    if (quests.slimeQuest.active == false && quests.slimeQuest.done == false){
         output.innerHTML = "<p>What would you like to do?</p><p>Go To Town And Grab The Slime Slayer Quest!</p><h1 class='questNotification'>!</h1><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
-    } else if (quests.slimeQuest.active == true || quests.slimeQuest.turnedIn == true) {
-        output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
-    } 
+    } else if (quests.slimeQuest.active == true && quests.slimeQuest.done == false && quests.slimeQuest.turnedIn == false) {
+        output.innerHTML = "<p>Go to the dungeon to slay the slimes!</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+    } else if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == false && quests.slimeQuest.done == true) {
+        output.innerHTML = "<p>What would you like to do?</p><p>Go To Town And Turn in Slime Slayer Quest!</p><h1 class='questNotification'>?</h1><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+    } else if (quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == false && quests.slimeKingQuest.done == false) {
+        output.innerHTML = "<p>What would you like to do?</p><p>Go To Town Grab The Big Slime Quest!</p><h1 class='questNotification'>!</h1><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+    } else if (quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == true && quests.slimeKingQuest.done == false) {
+        output.innerHTML = "<p>What would you like to do?</p><p>Go To Dungeon and slay The King Slime! (Reccomended to go to town and buy potions!)</p><h1 class='questNotification'>!</h1><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+    } else if (quests.slimeKingQuest.active == false && quests.slimeKingQuest.done == true) {
+        output.innerHTML = "<p>What would you like to do?</p><p>You are a hero! You can go back to town and turn in the quest to Slay The King Slime!</p><h1 class='questNotification'>?</h1><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"
+
+    }
     
     // else if (quests.slimeQuest.active == true && quests.slimeQuest.turnedIn == false || quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
     //     output.innerHTML = "<p>What would you like to do?</p><button onclick='dungeon()'><img class='dungeon' src='img/dungeon.jpg' alt='dungeon'><br>Dungeon</button><button onclick='town()'><img class='town' src='img/town.png' alt='town'><br>Town</button>"   

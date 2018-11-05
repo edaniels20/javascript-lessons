@@ -26,7 +26,9 @@ function questBoard() {
                             `;
     } 
     if (quests.slimeQuest.active == false && quests.slimeQuest.turnedIn == true && quests.slimeKingQuest.active == false && quests.slimeKingQuest.turnedIn == false){
-        output.innerHTML = `<button onclick='slimeKingQuest()'>The Big Slime!</button>
+        output.innerHTML = `<img class="npc" src="img/guardBig.png" alt="guard">
+                            <br>
+                            <button onclick='slimeKingQuestDescription()'>The Big Slime!</button>
                             <br>
                             <button onclick='town()'>Return To Town</button>`;
     }
@@ -105,7 +107,7 @@ function shop() {
 
 function slimeQuestDescription() {
     output.innerHTML = ''
-    if (quests.slimeQuest.active == false || quests.slimeQuest.done == true) {
+    if (quests.slimeQuest.active == false && quests.slimeQuest.done == false) {
         var slimeQuestText = new Typed('#output', {
             strings: ['<h2>Slay Those Slimes!</h2><p class="questText">Those damn slimes are escaping the dungeon at a rapid rate! We need to reduce their population asap. I need you to go to the dungeon and slay 4 slimes for me! Do you think you can do it?</p><button class="questButton" onclick="slimeQuest()">Accept</button><button class="questButton" onclick="questBoard()">Decline</button>'],
             typeSpeed: 10,
@@ -114,6 +116,25 @@ function slimeQuestDescription() {
     } else {
         slimeQuest();
     }
+}
+
+function slimeKingQuestDescription() {
+    output.innerHTML = ''
+    if (quests.slimeKingQuest.active == false && quests.slimeKingQuest.done == false) {
+        var QuestText = new Typed('#output', {
+            strings: ['<h2>The Big Slime!</h2><p class="questText">Those damn slimes keep coming! We had another scout party of 5 to go into the dungeon and only 1 came back... He keeps screaming the big slime the big slime! I need you to go in and investigate. Do you think you can do this?</p><button class="questButton" onclick="slimeKingQuest()">Accept</button><button class="questButton" onclick="questBoard()">Decline</button>'],
+            typeSpeed: 10,
+            loop: false,
+        });
+    } else {
+        var QuestText = new Typed('#output', {
+            strings: ['<h2>Hero!?</h2><p class="questText">So they are calling you a hero? Well that \"King Slime\" you killed the only thing between us and the other horrors of that dungeon! Collect your reward and just be ready for the horrors that await...</p><button class="questButton" onclick="slimeKingQuest()">Okay</button>'],
+            typeSpeed: 10,
+            loop: false,
+        });
+        update();
+    }
+    update();
 }
 
 function rest() {
@@ -129,6 +150,7 @@ function sleep() {
     if (player.coins >= 50){
         player.coins -= 50;
         player.hp = player.maxHp;
+        player.stats.mp = player.stats.maxMp;
         update();
     } else {
         console.log("You dont have enough gold!")

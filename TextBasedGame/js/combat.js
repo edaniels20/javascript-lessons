@@ -3,14 +3,12 @@ function combatMonster(type, mob) {
     var monsterDamage;
     var levelDif = player.lvl - monsters[type][mob].lvl;
     var dodgeChance = Math.round(Math.random() * 10 + Number(player.stats.luk));
-    updateMonsterHealth(type, mob)
     if (player.class == "mage"){
         player.stats.mp -= 5;
         if (player.stats.mp <= 0) {
-            prompt("Dont have enough mana for that must run away!")
-            combat = false;
+            alert("Dont have enough mana for that use mana potion or run away!");
             update();
-            mainMenu();
+            return;
         }
         if (player.stats.mp < 0){
             player.stats.mp = 0;
@@ -62,6 +60,7 @@ function combatMonster(type, mob) {
     if (player.hp <= 0){
         gameOver();
     }
+    updateMonsterHealth(type, mob)
     update();
 }
 
@@ -101,4 +100,11 @@ function levelUp(monsterLevel) {
 
 function gameOver() {
     location.reload();
+}
+
+function run(type, mob) {
+    combat = false;
+    monsters[type][mob].hp = monsters[type][mob].maxHp;
+    mobHealth.innerHTML = "";
+
 }
