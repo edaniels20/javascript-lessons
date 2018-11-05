@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- add your name to the h1 //result: 'My name is Bryce' -->
+    <h1 id="output">My name is</h1>
+     <!-- create a function that performs multiplication that returns the results and output the result below //result: 10 -->
+    <h2 id="math">Multiplication</h2>
+    <!-- create an array with different types of pets and output your pet of choice //result: 'Dragon' -->
+    <h2 id="array">Choose your pet</h2>
+</body>
+<script>
+    var name = "Bryce"
+    var prefix = document.getElementById("output").innerText;
+    var pets = ["cat", "dog"];
+    var output = document.getElementById("output");
+    var math = document.getElementById("math");
+    var array = document.getElementById("array");
+    output.innerHTML = prefix + " " + name;
+    function multiplication(num1, num2) {
+        return num1 * num2;
+    }
+    math.innerHTML = multiplication(2, 5);
+    array.innerHTML = pets[0;]
+</script>
+</html>
