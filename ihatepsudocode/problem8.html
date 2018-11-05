@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="output"></h1>
+    <ul id="list"></ul>
+    <script>
+        var output = document.getElementById("output");
+        var list = document.getElementById("list");
+        var heroes = {
+            best: "Ethor",
+            notBest: "Spideran",
+            hero3: "Thor",
+            hero4: "Ironman",
+            hero5: "Hulk",
+            hero6: "Captain America"
+        };
+        for (i in heroes) {
+            if (heroes[i] === "Ethor") {
+                output.textContent = heroes[i];
+            };
+            list.innerHTML += "<li>" + heroes[i] + "</li>";
+        }
+        // output.textContent = heroes.best        
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Review 5</title>
+</head>
+<body>
+    <!-- loop therough an array of Super Heros and output them as li's -->
+    <ul id="output">
+    </ul>
+    <script>
+        var output = document.getElementById("output");
+        var heroes = [
+            "Captain America",
+            "Iron Man",
+            "Wolverine",
+            "Spiderman",
+            "Thor AKA EThor",
+            "Hulk"
+        ];
+        for (var i = 0; i < heroes.length; i++){
+            output.innerHTML += "<li>" + heroes[i] + "</li>";
+        }
+        for (i in heroes){
+            output.innerHTML += "<li>" + heroes[i] + "</li>";
+        }
+        heroes.forEach(function(el) {
+            output.innerHTML += "<li>" + el + "</li>";
+        });
+    </script>
+</body>
+</html>
