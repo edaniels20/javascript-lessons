@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="output">
+
+    </ul>
+    <script>
+        var output = document.getElementById("output");
+        var heroes = [
+            {
+                name: "Iron Man",
+                powers: ["money", "suit"]
+            },
+            {
+                name: "Captain America",
+                powers: ["Drugs", "Strength"]
+            },
+            {
+                name: "Thor",
+                powers: ["God", "Lightning"]
+            }
+        ];
+        // while(true){
+        heroes.forEach(function(element){  
+            var powers = ""
+            var hero = element.name;
+            for (i = 0; i < element.powers.length; i++) {
+                powers += "<li>" + element.powers[i] + "</li>";
+            }
+            console.log(output)
+            output.innerHTML += "<li>" + hero + "</li><ul><li>POWERS<ul>" + powers + "</ul></ul>"
+        });
+        // }
+    </script>
+</body>
+</html>
