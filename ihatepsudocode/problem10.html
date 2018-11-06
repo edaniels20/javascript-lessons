@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Objects</h1>
+    <ul id="output">
+
+    </ul>
+    <script>
+        var output = document.getElementById("output");
+        var heroes = {
+            hero1: {
+                name: "Ironman",
+                power: "Suit"
+            },
+            hero2: {
+                name: "Captain America",
+                power: "Strength"
+            },
+            hero3: {
+                name: "Thor",
+                power: "He is a god!"
+            },
+        };
+        for (key in heroes){
+            output.innerHTML += "<li>" + heroes[key].name + "</li><ul><li>Power: " + heroes[key].power + "</li></ul>";
+        }
+
+    </script>
+</body>
+</html>

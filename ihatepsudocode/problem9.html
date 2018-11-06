@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Lorem, ipsum dolor.</h2>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit alias atque, quos consequuntur placeat reiciendis?</p>
+    <h2>Ipsa, ad eligendi.</h2>
+    <p>Expedita fugit doloribus odio nam atque sit repellendus quia aliquid, aperiam amet. Suscipit, voluptatum enim.</p>
+    <h2>Dolorem, repellendus ipsam.</h2>
+    <p>Iste possimus illo quam, ipsam voluptate nostrum ea repellat debitis nulla delectus libero unde impedit.</p>
+    <h2>Veritatis, recusandae fugiat?</h2>
+    <p>Quo quidem cum odio saepe, recusandae sed error provident iste tempore aliquam laborum commodi sint.</p>
+    <h2>Ad, nisi sint?</h2>
+    <p>Itaque, nemo minima? Impedit error ex delectus suscipit ipsa qui ad ab enim et molestiae!</p>
+    <h2>Doloribus, soluta numquam?</h2>
+    <p>Cupiditate nesciunt ab quod inventore sunt facilis quidem, ullam tenetur voluptatum cumque repellat ipsa delectus.</p>
+    <script>
+        var headers = document.getElementsByTagName("h2");
+        var paragraphs = document.getElementsByTagName("p");
+        for (i = 0; i < headers.length; i++){
+            headersAdd = (i + 1) + '. ' + headers[i].textContent;
+            headers[i].textContent = headersAdd;
+        }
+    </script>
+</body>
+</html>
