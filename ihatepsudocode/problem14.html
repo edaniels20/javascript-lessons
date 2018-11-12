@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .removeListStyle {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="overWrite">
+        <p>Pick your favorite hero and click the button to do stuffs!</p>
+        <ul>
+            <li class="list">Superman</li>
+            <li class="power">Strong</li>
+            <li class="list">Batman</li>
+            <li class="power">Money</li>
+            <li class="list">Spiderman</li>
+            <li class="power">Slings Webs</li>
+            <li class="list">Thor</li>
+            <li class="power">GOD</li>
+            <li class="list">Ironman</li>
+            <li class="power">Money</li>
+        </ul>
+        <div id="output"></div>
+    </div>
+    <label><input type="radio" name="yours" value="Superman">Superman</label>
+    <label><input type="radio" name="yours" value="Batman">Batman</label>
+    <label><input type="radio" name="yours" value="Spiderman">Spiderman</label>
+    <label><input type="radio" name="yours" value="Thor">Thor</label>
+    <label><input type="radio" name="yours" value="Ironman">Ironman</label>
+    <br>
+    <button onclick="allTheThings()">Do The Things</button>
+    <script>
+        function allTheThings() {
+        var output = document.getElementById("output");
+        var overWrite = document.getElementById("overWrite");
+        var heroList = document.getElementsByClassName("list");
+        var yourFav = document.querySelector("input[name='yours']:checked").value;
+        var opening = document.getElementsByTagName("p")[0].innerHTML;
+        var heroPowers = document.querySelectorAll(".power");
+        var myFav = 3.3;
+        var myFav = Math.round(myFav);
+        var myFavString = "Thor";
+        var heroes = [
+        ];
+        for (var i = 0; i < 4; i++){
+            heroes.push({
+                hero: heroList[i].textContent,
+                power: heroPowers[i].textContent
+            });
+            if (heroList[i].textContent === myFavString && myFavString === yourFav){
+                output.innerHTML = "<p>My Favorite hero is also " + heroList[i].textContent + ". That is awesome</p>"
+            } else if (yourFav === "Superman" || yourFav === "Batman") {
+                output.innerHTML = "<p>I mean you like DCU so you dont really get a say in the matter";
+            } else {
+                output.innerHTML = "<p>Wow my favorite super hero is " + heroList[myFav].textContent + " but " + yourFav + " is cool too</p"
+            }
+        }
+            setTimeout(function() {
+                overWrite.innerHTML = "<p>Lets make this page look a bit cleaner tho...";
+        }, 4000)
+            setTimeout(function() {
+                overWrite.innerHTML = "";
+                for (var i = 0; i < heroes.length; i++) {
+                    console.log("Dab")
+                    overWrite.innerHTML += "<li class='removeListStyle'>Hero<ul><li>"+ heroes[i].hero + "</li></ul><ul><li class='removeListStyle'>Power<ul><li>" + heroes[i].power + "</ul></li></li>"
+                }
+            }, 8000)
+        }
+
+
+        // Decision
+        // if
+        // if else
+        // if else if
+        // switch
+
+        // Loops
+        // for loop
+        // foreach
+        // for in
+        // while
+        // do while 
+    </script>
+</body>
+</html>
