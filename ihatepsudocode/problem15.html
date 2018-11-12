@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="output"></h1>
+    <script>
+        var answer = "";
+        var output = document.getElementById("output");
+        array1 = [1, 2, 3];
+        array2 = [1, 2, 3];
+        array3 = ["Hello", "Bryce"];
+        array4 = ["Hello", "Bryce"];
+        array5 = [1, 2, 3];
+        array6 = [4, 5, 6];
+        array7 = [2, 1, 3];
+        array8 = [4, 6, 5];
+        array9 = ["Hello", "World"];
+        array10 = ["Hola", "Mundo"];
+        function dab(arrayi, arrayj){
+            if (arrayi.length == arrayj.length) {
+                for (var i = 0; i < arrayi.length; i++) {
+                    if (arrayi[i] == arrayj[i]){
+                        console.log("true")
+                    } else {
+                        console.log("false")
+                    }
+                }
+            } else {
+                answer += "false"
+            }
+        };
+        dab(array1, array2);
+        dab(array3, array4);
+        dab(array5, array6);
+        dab(array7, array8);
+        dab(array9, array10);
+        output.innerHTML = answer;
+    </script>
+</body>
+</html>
