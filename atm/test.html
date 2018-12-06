@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .pinPad {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .pinPad button {
+            position: absolute;
+            width: 23px;
+        }
+        .buttonEnter {
+            bottom: 0;
+
+        }
+        .button1 {
+            top: 0;
+            left: 0;
+        }
+        .button2 {
+            top: 0;
+            left: 23px;
+        }
+        .button3 {
+            top: 0;
+            left: 46px;
+        }
+        .button4 {
+            top: 23px;
+            left: 0;
+        }
+        .button5 {
+            top: 23px;
+            left: 23px;
+        }
+        .button6 {
+            top: 23px;
+            left: 46px;
+        }
+        .button7 {
+            top: 46px;
+            left: 0;
+        }
+        .button8 {
+            top: 46px;
+            left: 23px;
+        }
+        .button9 {
+            top: 46px;
+            left: 46px;
+        }
+        .button0 {
+            top: 69px;
+            left: 23px;
+        }
+        .buttonC {
+            top: 69px;
+            left: 0;
+        }
+        .buttonEnter {
+            top: 69px;
+            left: 46px;
+            height: 22px;
+        }
+    </style>
+</head>
+<body>
+    <input type="number" id="cardNumber">
+    <div class="container">
+        <button onclick="addInput(1)" class="button1">1</button>
+        <button onclick="addInput(2)" class="button2">2</button>
+        <button onclick="addInput(3)" class="button3">3</button>
+        <button onclick="addInput(4)" class="button4">4</button>
+        <button onclick="addInput(5)" class="button5">5</button>
+        <button onclick="addInput(6)" class="button6">6</button>
+        <button onclick="addInput(7)" class="button7">7</button>
+        <button onclick="addInput(8)" class="button8">8</button>
+        <button onclick="addInput(9)" class="button9">9</button>
+        <button onclick="addInput(0)" class="button0">0</button>
+        <button onclick="addInput('clear')" class="buttonC">C</button>
+        <button class="buttonEnter">E</button>
+    </div>
+    <script>
+        function addInput(number) {
+            if (isNaN(number)){
+                document.getElementById("cardNumber").value = "";
+            } else {
+                document.getElementById("cardNumber").value += number
+            }
+
+        }
+    </script>
+</body>
+</html>

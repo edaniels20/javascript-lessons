@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .input {
+            width: 100px;
+            height: 30px;
+            border: solid black 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="input">
+        <span id="output">
+
+        </span>
+    </div>
+    <span class="balance">
+
+    </span>
+    <button onclick="addNumber(1)">1</button>
+    <button onclick="addNumber(2)">2</button>
+    <button onclick="addNumber(3)">3</button>
+    <button onclick="addNumber('b')"><</button>
+    <button onclick="addNumber('c')">c</button>
+    <script>
+        function addNumber(value) {
+            var output = document.getElementById("output");
+            if (value === "b") {
+                var input = document.getElementById("output").innerText;
+                input = input.split("");
+                input.pop();
+                input = input.join("");
+                output.innerText = input;
+            } else if (value === "c") {
+                output.innerText = "";
+            } else {
+                output.innerText += value;
+            }
+        }
+    </script>
+</body>
+</html>

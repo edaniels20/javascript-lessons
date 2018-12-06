@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2 {
+            font-size: 20px;
+            margin-bottom: 2px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="output">
+        <h1>ATM</h1>
+        <ol>
+            <li>Take user input for valid card number</li>
+            <ol>
+                <li>If user enters a valid card number run validation function</li>
+                <li>User will be displayed the new ui for entering the pin</li>
+                <li>When user is prompted to enter pin number set a counter variable to 0 if user enters invalid pin more than 3 times reset the function</li>
+                <ul>
+                    <li>if pin is connected to the account they are prompted with a screen that has balance enquiry, deposite, withdraw, pin change, transfer</li>
+                    <li>If user chooses balane enquiry run function balance enquiry. This would take card number and pin and output the balance connected to that object</li>
+                    <li>If user chooses deposite. Count how much money they want to deposite prompt the user if it is the correct amount if it isnt give user back money and ask them to try again. if it is correct run function deposite this takes two variables card number and pin. adds correct amount of money to card balance</li>
+                    <li>If user chooses withdraw. run the withdraw function, this will check the balance of the users account if they have sufficient funds it will give the money to the user.</li>
+                    <li>If user chooses pin change. Run the pin change function. Ask user for current pin and new pin if current pin is correct change pin to new pin.</li>
+                </ul>
+            </ol>
+        </ol>
+        <h2>What is your card number?</h2>
+        <form action="#" onsubmit="validUser()">
+            <input type="text" id="cardNumber">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        // var user = {
+        //     first: "Ethan",
+        //     last: "Daniels",
+        //     card: {
+        //         pin: "1234",
+        //         number: "5678",
+        //         balance: 300,
+        //     }
+        // };
+
+        // var output = document.getElementById("output");
+        // var output2 = document.getElementById("output2");
+
+        // function validUser() {
+        //     event.preventDefault();
+        //     var cardNumber = document.getElementById("cardNumber").value;
+        //     if (cardNumber === user.card.number) {
+        //         output.innerHTML = `<h2>What is your Pin Number?</h2>
+        //                             <form action="#" onsubmit="validation()">
+        //                                 <input type="text" placeholder="Pin number" id="pinNumber">
+        //                                 <br>
+        //                                 <button type="submit">Submit</button>
+        //                             </form>`;
+        //     } else {
+        //         alert("Not your card number bud")
+        //     }
+        // }
+
+        // function validation() {
+        //     event.preventDefault();
+        //     var cardNumber = document.getElementById("pinNumber").value;
+        //     if (cardNumber === user.card.pin) {
+        //         output.innerHTML = `<h1>Hello ` + user.first + " " + user.last + `</h1>
+        //                             <h2>Do you want to deposite or withdraw?</h2>
+        //                             <form action="#" onsubmit="atm()">
+        //                                     <input type="text" placeholder="Amount" id="amount">
+        //                                     <br>
+        //                                     <br>
+        //                                     <button type="submit">Submit</button>
+        //                             </form>
+        //                             <label><input type="radio" name="choice" value="deposite" checked="checked">Deposite</label>
+        //                             <label><input type="radio" name="choice" value="withdraw">Withdraw</label>`
+        //         output2.innerHTML = "<br><p>Your current balance is</p>" + user.card.balance;
+        //     } else {
+        //         alert("Not a valid card number")
+        //     }
+        // }
+
+        // function atm() {
+        //     event.preventDefault();
+        //     var amount = Number(document.getElementById("amount").value);
+        //     var choice = document.querySelector("input[name=choice]:checked").value;
+        //     if (choice === "deposite") {
+        //         user.card.balance += amount
+        //         output2.innerHTML = "<br><p>Your current balance is</p>" + user.card.balance;
+        //         console.log("Dab")
+        //     } else {
+        //         if (amount > user.card.balance) {
+        //             alert("You dont have that much money bud!");
+        //         } else {
+        //             user.card.balance -= amount;
+        //             output2.innerHTML = "<br><p>Your current balance is</p>" + user.card.balance;;
+        //         }
+        //     }
+        // }
+    </script>
+</body>
+</html>
