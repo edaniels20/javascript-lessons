@@ -2,6 +2,33 @@ body {
   text-align: center;
 }
 
+button {
+  outline: none;
+}
+
+.whiteBox {
+  background-color: white;
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  z-index: 2;
+  top: -80px;
+  left: -99px;
+}
+
+.money {
+  position: absolute;
+  top: -50px;
+  right: -71px;
+  z-index: 1;
+  -webkit-transition: all 1s ease-in;
+  transition: all 1s ease-in;
+}
+
+.moneyAfter {
+  top: 118px;
+}
+
 .topAtm {
   height: 40px;
   border: solid #80A1D4 2px;
@@ -17,7 +44,7 @@ body {
 .innerAtm {
   margin: auto;
   width: 100%;
-  height: 100%;
+  height: 107%;
   border: 2px solid black;
   border-bottom: 240px solid transparent;
   border-right: 140px solid #75C9C8;
@@ -105,7 +132,7 @@ body {
   border-radius: 25px;
   background-color: #525050;
   right: 0;
-  z-index: 2;
+  z-index: 4;
 }
 
 .cardInsertCircle {
@@ -116,16 +143,19 @@ body {
   height: 50px;
   background-color: #525050;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 4;
 }
 
 .cardInsertInner {
   width: 175px;
   position: absolute;
-  border: solid black 2px;
+  background-color: black;
   right: 2px;
-  top: 7px;
-  z-index: 2;
+  height: 25px;
+  top: 0px;
+  z-index: 5;
+  border: solid #525050 10px;
+  border-radius: 20px;
 }
 
 .cashExert {
@@ -215,9 +245,9 @@ body {
   background-color: #80A1D4;
   height: 241px;
   position: absolute;
-  width: 1332px;
-  right: 79px;
-  top: 67%;
+  width: 1335px;
+  right: 77px;
+  top: 72%;
   -webkit-transform: perspective(20px) rotateX(1deg);
           transform: perspective(20px) rotateX(1deg);
 }
@@ -325,6 +355,11 @@ body {
   top: 39px;
 }
 
+.bottomAtm {
+  position: relative;
+  top: 47px;
+}
+
 .atmBottom {
   position: relative;
   border: solid black 1px;
@@ -350,7 +385,6 @@ body {
   top: -69px;
   -webkit-transition: all 1s ease-in;
   transition: all 1s ease-in;
-  margin-top: 100px;
 }
 
 .recipt.transition {

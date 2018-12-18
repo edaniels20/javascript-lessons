@@ -2,6 +2,7 @@ var output = document.getElementById("atmScreen");
 var recipt = document.getElementById("recipt");
 var buttonLeft = document.getElementById("buttonLeft");
 var buttonRight = document.getElementById("buttonRight");
+var money = document.getElementById("money");
 
 var users = {
     ethan: {
@@ -39,9 +40,13 @@ function foo() {
         input.innerHTML += key;
     }
 }
+
+
+// This is the primary function it checks the variable menuCounter and based on what the menuCounter is it will run the function based on the asignment of the variable
 function validation() {
     recipt.classList.remove("transition");
     recipt.innerText = "";
+    money.classList.remove("moneyAfter");
     if (menuCounter == "newTransaction") {
         main();
     } else {
@@ -90,6 +95,8 @@ function validation() {
         processing("change", "pin", input)
     }
 }
+
+//Overwriting the Dom to ask the user if they want to perform another transaction
 function mainMenu() {
     output.innerHTML = `
     <div class="screenHead">
@@ -119,6 +126,8 @@ function mainMenu() {
     `;
     menuCounter='newTransaction'
 }
+
+//This is the mainMenu 
 function main() {
     output.innerHTML = `
         <div class="screenHead">
@@ -127,7 +136,7 @@ function main() {
         <div class="screenContent">
             <div class="col-sm-4">
                 <p class="withdrawal">Withdrawal</p>
-                <p class="deposite">Deposite</p>
+                <p class="deposite">Deposit</p>
                 <p class="transfer">Transfer</p>
             </div>
             <div class="col-sm-4">
@@ -180,7 +189,7 @@ function depositeMenu() {
 }
 function depositeChecking() {
     output.innerHTML = `
-    <h1>How much would you like to deposite?</h1>
+    <h1>How much would you like to deposit?</h1>
     <div class="input">
         <span id="input"></span>
     </div>
@@ -189,7 +198,7 @@ function depositeChecking() {
 }
 function depositeSavings() {
     output.innerHTML = `
-    <h1>How much would you like to deposite?</h1>
+    <h1>How much would you like to deposit?</h1>
     <div class="input">
         <span id="input"></span>
     </div>
@@ -394,6 +403,7 @@ function processing(action, account, amount) {
                     `;
                     mainMenu();
                     recipt.classList.add("transition");
+                    money.classList.add("moneyAfter");
                 } else {
                     alert("Not enough money bud!")
                 }
@@ -410,6 +420,7 @@ function processing(action, account, amount) {
                     <span> Checking Account Balance:</span> ` + users[i].account.savings;
                     mainMenu();
                     recipt.classList.add("transition");
+                    money.classList.add("moneyAfter")
                 } else {
                     alert("Not enough money bud")
                 }
